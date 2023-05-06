@@ -28,8 +28,7 @@ def print_file(filename, uni):
             continue
         
     shell = win32com.client.Dispatch("WScript.Shell")
-    #shell.SendKeys(uni+"{ENTER}")
-    
+    shell.SendKeys(uni+"{ENTER}")
     return
 
 def get_roles(role_text):
@@ -61,7 +60,7 @@ def print_all(json_file, print_files):
 
     for entry in json_file:
         #print each file
-        print_file = print_files[i]
+        to_print = print_files[i]
         i = (i+1)%len(print_files)
         
         #check if string is in form letter letter number number number number
@@ -80,14 +79,13 @@ def print_all(json_file, print_files):
             print("found one that works?")
             text =  "Hello " + name + "\n\n"
             text += "Good luck on your " + dpt + " finals!\n\n"
-            text += print_file
+            text += to_print
 
             #write text string to file
             with open("temp.txt", "w") as f:
                 f.write(text)
-
-            #print_file("temp.txt", uni)
-            print(text)
+            print_file("temp.txt", uni)
+            return
     
 
 #main function here
